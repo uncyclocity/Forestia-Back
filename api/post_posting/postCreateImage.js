@@ -16,7 +16,7 @@ const upload = multer({ storage }).array("images");
 
 fs.readdir("public/uploads", (error) => {
   if (error) {
-    fs.mkdirSync("app/public/uploads");
+    fs.mkdirSync("/app/public/uploads");
     fs.mkdirSync("public/uploads/free");
     fs.mkdirSync("public/uploads/photo");
   }
