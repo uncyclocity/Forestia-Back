@@ -70,6 +70,7 @@ server.use("/uploads", express.static("app/uploads"));
 
 server.get("/", (req, res) => {
   res.send("Forestia is here");
+  console.log(__dirname);
 });
 
 server.listen(process.env.PORT, (err) => {
