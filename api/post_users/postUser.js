@@ -1,5 +1,5 @@
 const connectDB = require("../../middleware/mongodb");
-const Member = require("../../models/member");
+const Member = require("../../models/Member");
 const mongoose = require("mongoose");
 
 const handler = async (req, res) => {
