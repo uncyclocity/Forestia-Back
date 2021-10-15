@@ -14,11 +14,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage }).array("images");
 
-fs.readdir("/app/public/uploads", (error) => {
+fs.readdir("/app/uploads", (error) => {
   if (error) {
-    fs.mkdirSync("/app/public/uploads");
-    fs.mkdirSync("/app/public/uploads/free");
-    fs.mkdirSync("/app/public/uploads/photo");
+    fs.mkdirSync("/app/uploads");
+    fs.mkdirSync("/app/uploads/free");
+    fs.mkdirSync("/app/uploads/photo");
   }
 });
 
