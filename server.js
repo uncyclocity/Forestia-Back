@@ -68,6 +68,10 @@ server.use("/api/post_users/postUserToken", postUserToken);
 
 server.use("/uploads", express.static("public/uploads"));
 
+server.get("/", (req, res) => {
+  res.send("Forestia is here");
+});
+
 server.listen(5000, (err) => {
   if (err) throw err;
   console.log("5000번 포트에서 대기 중");
