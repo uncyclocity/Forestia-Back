@@ -66,13 +66,13 @@ server.use("/api/post_users/postUserToken", postUserToken);
 
 /* ----------------------------------------------------------------------- */
 
-server.use("/uploads", express.static("public/uploads"));
+server.use("/uploads", express.static("app/public/uploads"));
 
 server.get("/", (req, res) => {
   res.send("Forestia is here");
 });
 
-server.listen(5000, (err) => {
+server.listen(process.env.$PORT, (err) => {
   if (err) throw err;
-  console.log("5000번 포트에서 대기 중");
+  console.log(process.env.$PORT + "번 포트에서 대기 중");
 });
