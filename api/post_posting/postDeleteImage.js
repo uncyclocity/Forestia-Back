@@ -17,12 +17,13 @@ router.post("/", (req, res) => {
       },
       (err, data) => {
         if (err) {
-          throw err;
+          return res.status(500).send(err.message);
         }
         console.log("s3 deleteObject ", data);
       }
     );
   }
+  return res.status(200).send();
 });
 
 module.exports = router;
