@@ -12,7 +12,7 @@ const fs = require("fs");
 
 const storage = multerS3({
   s3: s3,
-  bucket: "itsforestia",
+  bucket: "forestiaishere",
   acl: "public-read",
   key: function (req, file, cb) {
     cb(
