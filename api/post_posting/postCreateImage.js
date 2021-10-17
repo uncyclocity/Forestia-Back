@@ -38,9 +38,8 @@ fs.readdir("/app/public", (error) => {
 
 router.post("/", upload, (req, res) => {
   const pathArr = [];
-  console.log(req.files);
   for (var i = 0; i < req.files.length; i++) {
-    pathArr.push(req.files.location);
+    pathArr.push(req.files[i].location);
   }
   res.json(pathArr);
 });
