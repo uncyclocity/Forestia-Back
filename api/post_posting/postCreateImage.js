@@ -29,7 +29,7 @@ const upload = multer({ storage }).array("images");
 router.post("/", upload, (req, res) => {
   const pathArr = [];
   for (var i = 0; i < req.files.length; i++) {
-    pathArr.push(req.files[i].location);
+    pathArr.push(req.files[i].key);
   }
   res.json(pathArr);
 });
