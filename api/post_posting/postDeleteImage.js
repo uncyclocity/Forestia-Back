@@ -10,6 +10,7 @@ const s3 = new aws.S3({
 router.post("/", (req, res) => {
   const { imagesUrl } = req.body;
   for (var i = 0; i < imagesUrl.length; i++) {
+    console.log(imagesUrl[i]);
     s3.deleteObject(
       {
         Bucket: "forestiaishere", // 사용자 버켓 이름
