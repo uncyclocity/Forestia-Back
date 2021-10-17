@@ -13,7 +13,7 @@ router.post("/", (req, res) => {
     console.log(imagesUrl[i]);
     s3.deleteObject(
       {
-        Bucket: "forestiaishere", // 사용자 버켓 이름
+        Bucket: "itsforestia", // 사용자 버켓 이름
         Key: imagesUrl[i], // 버켓 내 경로
       },
       (err, data) => {

@@ -11,7 +11,7 @@ const s3 = new aws.S3({
 
 const storage = multerS3({
   s3: s3,
-  bucket: "forestiaishere",
+  bucket: "itsforestia",
   acl: "public-read",
   key: function (req, file, cb) {
     cb(
