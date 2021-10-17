@@ -8,7 +8,6 @@ const s3 = new aws.S3({
   secretAccessKey: process.env.secretAccessKey,
   region: process.env.region,
 });
-const fs = require("fs");
 
 const storage = multerS3({
   s3: s3,
@@ -26,15 +25,6 @@ const storage = multerS3({
 });
 
 const upload = multer({ storage }).array("images");
-
-fs.readdir("/app/public", (error) => {
-  if (error) {
-    fs.mkdirSync("/app/public");
-    fs.mkdirSync("/app/public/uploads");
-    fs.mkdirSync("/app/public/uploads/free");
-    fs.mkdirSync("/app/public/uploads/photo");
-  }
-});
 
 router.post("/", upload, (req, res) => {
   const pathArr = [];
