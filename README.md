@@ -1,6 +1,6 @@
 # Forestia-Back
 
-**Next.js** 학습을 목적으로 제작하게 된 게시판 사이트 **Forestia**의 백엔드 단입니다.
+**Next.js** 학습을 목적으로 제작하게 된 게시판 사이트 **Forestia**의 백엔드 단입니다. <br>
 프로젝트에 대한 자세한 설명은 <a href="https://github.com/uncyclocity/Forestia">프론트엔드단 레포</a>를 참고해주시기 바랍니다.
 
 <img src="./readme_src/logo.png" width="500px"></img>
