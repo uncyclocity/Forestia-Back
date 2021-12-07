@@ -72,7 +72,7 @@ server.get("/", (req, res) => {
   res.send("Forestia is here");
 });
 
-server.listen(process.env.PORT, (err) => {
+server.listen(3000, (err) => {
   if (err) throw err;
-  console.log(process.env.PORT + "번 포트에서 대기 중");
+  console.log(3000 + "번 포트에서 대기 중");
 });
