@@ -13,17 +13,25 @@ const getPostingsForList = require("./api/get_posting/getPostingsForList");
 const getPostingsLen = require("./api/get_posting/getPostingsLen");
 const getPostingsTop3 = require("./api/get_posting/getPostingsTop3");
 
-//import post_posting
+// import post_posting
 const postCreateImage = require("./api/post_posting/postCreateImage");
-const postDeleteImage = require("./api/post_posting/postDeleteImage");
 const postCreatePosting = require("./api/post_posting/postCreatePosting");
+
+// import delete_posting
+const postDeleteImage = require("./api/post_posting/postDeleteImage");
 const postDeletePosting = require("./api/post_posting/postDeletePosting");
+
+// import put_posting
 const postEditPosting = require("./api/post_posting/postEditPosting");
 const postEditUpDown = require("./api/post_posting/postEditUpDown");
 
 // import post_comment
 const postCreateComm = require("./api/post_comment/postCreateComm");
+
+// import delete_comment
 const postDeleteComm = require("./api/post_comment/postDeleteComm");
+
+// import put_comment
 const postEditComm = require("./api/post_comment/postEditComm");
 
 // import get_users
@@ -45,15 +53,24 @@ server.use("/api/get_posting/getPostingsTop3", getPostingsTop3);
 
 // post_posting
 server.use("/api/post_posting/postCreateImage", postCreateImage);
-server.use("/api/post_posting/postDeleteImage", postDeleteImage);
+
 server.use("/api/post_posting/postCreatePosting", postCreatePosting);
+
+// delete_posting
+server.use("/api/post_posting/postDeleteImage", postDeleteImage);
 server.use("/api/post_posting/postDeletePosting", postDeletePosting);
+
+// delete_edit
 server.use("/api/post_posting/postEditPosting", postEditPosting);
 server.use("/api/post_posting/postEditUpDown", postEditUpDown);
 
 // post_comment
 server.use("/api/post_comment/postCreateComm", postCreateComm);
+
+// delete_comment
 server.use("/api/post_comment/postDeleteComm", postDeleteComm);
+
+// edit_comment
 server.use("/api/post_comment/postEditComm", postEditComm);
 
 // get_users
