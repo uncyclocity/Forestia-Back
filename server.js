@@ -1,10 +1,16 @@
 const express = require("express");
 const server = express();
+const https = require("https");
+const fs = require("fs");
+const options = require("./config/pem_config").options;
 const cors = require("cors");
+const ports = [80, 443];
 
 server.use(express.json());
 
 server.use(cors());
+
+const httpsServer = https.createServer(options, server);
 
 // import get_posting
 const getLatestPostingId = require("./api/get_posting/getLatestPostingId");
@@ -72,7 +78,12 @@ server.get("/", (req, res) => {
   res.send("Forestia is here");
 });
 
-server.listen(3050, (err) => {
+server.listen(ports[0], (err) => {
   if (err) throw err;
-  console.log(3050 + "번 포트에서 대기 중");
+  console.log(ports[0] + "번 포트에서 대기 중");
+});
+
+httpsServer.listen(ports[1], (err) => {
+  if (err) throw err;
+  console.log(ports[1] + "번 포트에서 대기 중");
 });
