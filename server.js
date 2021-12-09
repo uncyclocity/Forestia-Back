@@ -1,7 +1,6 @@
 const express = require("express");
 const server = express();
 const https = require("https");
-const fs = require("fs");
 const options = require("./config/pem_config").options;
 const cors = require("cors");
 const ports = [80, 443];
@@ -13,79 +12,79 @@ server.use(cors());
 const httpsServer = https.createServer(options, server);
 
 // import get_posting
-const getLatestPostingId = require("./api/get_posting/getLatestPostingId");
-const getPostingEle = require("./api/get_posting/getPostingEle");
-const getPostingsForList = require("./api/get_posting/getPostingsForList");
-const getPostingsLen = require("./api/get_posting/getPostingsLen");
-const getPostingsTop3 = require("./api/get_posting/getPostingsTop3");
+const getLatestPostingId = require("./api/get/LatestPostingId");
+const getPostingEle = require("./api/get/PostingEle");
+const getPostings4List = require("./api/get/Postings4List");
+const getPostingsLen = require("./api/get/PostingsLen");
+const getPostingsTop3 = require("./api/get/PostingsTop3");
 
 // import post_posting
-const postCreateImage = require("./api/post_posting/postCreateImage");
-const postCreatePosting = require("./api/post_posting/postCreatePosting");
+const postImage = require("./api/post/Image");
+const postPosting = require("./api/post/Posting");
 
 // import delete_posting
-const postDeleteImage = require("./api/post_posting/postDeleteImage");
-const postDeletePosting = require("./api/post_posting/postDeletePosting");
+const deleteImage = require("./api/delete/Image");
+const deletePosting = require("./api/delete/Posting");
 
 // import put_posting
-const postEditPosting = require("./api/post_posting/postEditPosting");
-const postEditUpDown = require("./api/post_posting/postEditUpDown");
+const putPosting = require("./api/put/Posting");
+const putUpDown = require("./api/put/UpDown");
 
 // import post_comment
-const postCreateComm = require("./api/post_comment/postCreateComm");
+const postComment = require("./api/post/Comment");
 
 // import delete_comment
-const postDeleteComm = require("./api/post_comment/postDeleteComm");
+const deleteComment = require("./api/delete/Comment");
 
 // import put_comment
-const postEditComm = require("./api/post_comment/postEditComm");
+const putComment = require("./api/put/Comment");
 
 // import get_users
-const getUserById = require("./api/get_users/getUserById");
-const getUserByNickName = require("./api/get_users/getUserByNickName");
+const getUserById = require("./api/get/UserById");
+const getUserByNickName = require("./api/get/UserByNickName");
 
 // import post_users
-const postUser = require("./api/post_users/postUser");
-const postUserToken = require("./api/post_users/postUserToken");
+const postUser = require("./api/post/User");
+const postUserToken = require("./api/post/UserToken");
 
 /* ----------------------------------------------------------------------- */
 
 // get_posting
-server.use("/api/get_posting/getLatestPostingId", getLatestPostingId);
-server.use("/api/get_posting/getPostingEle", getPostingEle);
-server.use("/api/get_posting/getPostingsForList", getPostingsForList);
-server.use("/api/get_posting/getPostingsLen", getPostingsLen);
-server.use("/api/get_posting/getPostingsTop3", getPostingsTop3);
+server.use("/get/latest-posting-id", getLatestPostingId);
+server.use("/get/posting-ele", getPostingEle);
+server.use("/get/postings-4-list", getPostings4List);
+server.use("/get/postings-len", getPostingsLen);
+server.use("/get/postings-top3", getPostingsTop3);
 
 // post_posting
-server.use("/api/post_posting/postCreateImage", postCreateImage);
+server.use("/post/image", postImage);
 
-server.use("/api/post_posting/postCreatePosting", postCreatePosting);
+server.use("/post/posting", postPosting);
 
 // delete_posting
-server.use("/api/post_posting/postDeleteImage", postDeleteImage);
-server.use("/api/post_posting/postDeletePosting", postDeletePosting);
+server.use("/delete/image", deleteImage);
+server.use("/delete/posting", deletePosting);
 
 // delete_edit
-server.use("/api/post_posting/postEditPosting", postEditPosting);
-server.use("/api/post_posting/postEditUpDown", postEditUpDown);
+server.use("/put/posting", putPosting);
+server.use("/put/updown", putUpDown);
 
 // post_comment
-server.use("/api/post_comment/postCreateComm", postCreateComm);
+server.use("/post/comment", postComment);
 
 // delete_comment
-server.use("/api/post_comment/postDeleteComm", postDeleteComm);
+server.use("/delete/comment", deleteComment);
 
 // edit_comment
-server.use("/api/post_comment/postEditComm", postEditComm);
+server.use("/put/comment", putComment);
 
 // get_users
-server.use("/api/get_users/getUserById", getUserById);
-server.use("/api/get_users/getUserByNickName", getUserByNickName);
+server.use("/get/user-by-id", getUserById);
+server.use("/get/user-by-nickname", getUserByNickName);
 
 // post_users
-server.use("/api/post_users/postUser", postUser);
-server.use("/api/post_users/postUserToken", postUserToken);
+server.use("/post/user", postUser);
+server.use("/post/user-token", postUserToken);
 
 /* ----------------------------------------------------------------------- */
 

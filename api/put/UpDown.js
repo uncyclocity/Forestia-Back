@@ -15,7 +15,7 @@ const substract = (post, userId, ud_type) => {
 };
 
 const handler = async (req, res) => {
-  if (req.method === "POST") {
+  if (req.method === "PUT") {
     const { board_type, post_id, ud_type, operation, userId, rev_ud_type } =
       req.body;
     if (

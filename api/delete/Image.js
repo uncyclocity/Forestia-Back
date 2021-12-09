@@ -7,7 +7,7 @@ const s3 = new aws.S3({
   region: process.env.region,
 });
 
-router.post("/", (req, res) => {
+router.delete("/", (req, res) => {
   const { imagesUrl } = req.body;
   for (var i = 0; i < imagesUrl.length; i++) {
     console.log(imagesUrl[i]);

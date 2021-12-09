@@ -3,7 +3,7 @@ const Free = require("../../models/Free");
 const Photo = require("../../models/Photo");
 
 const handler = async (req, res) => {
-  if (req.method === "POST") {
+  if (req.method === "PUT") {
     const { board_type, post_id, comment_id, content } = req.body;
     if (comment_id >= 0 && post_id >= 0 && board_type && content) {
       try {
