@@ -10,7 +10,6 @@ const s3 = new aws.S3({
 router.delete("/", (req, res) => {
   const { imagesUrl } = req.body;
   for (var i = 0; i < imagesUrl.length; i++) {
-    console.log(imagesUrl[i]);
     s3.deleteObject(
       {
         Bucket: "itsforestia", // 사용자 버켓 이름
@@ -20,7 +19,6 @@ router.delete("/", (req, res) => {
         if (err) {
           return res.status(500).send(err.message);
         }
-        console.log("s3 deleteObject ", data);
       }
     );
   }

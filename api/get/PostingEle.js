@@ -20,7 +20,6 @@ const handler = async (req, res) => {
             );
             break;
         }
-        console.log(postId);
         return res.status(200).send(posting);
       } catch (error) {
         return res.status(500).send(error.message);
