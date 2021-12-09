@@ -4,23 +4,23 @@ const Photo = require("../../models/Photo");
 
 const handler = async (req, res) => {
   if (req.method === "DELETE") {
-    const { board_type, post_id, comment_id } = req.body;
-    if (parseInt(comment_id) >= 0 && parseInt(post_id) >= 0 && board_type) {
+    const { boardType, postId, commentId } = req.body;
+    if (parseInt(commentId) >= 0 && parseInt(postId) >= 0 && boardType) {
       try {
-        if (board_type === "free") {
-          var post = await Free.findOne({ id: post_id });
-        } else if (board_type === "photo") {
-          var post = await Photo.findOne({ id: post_id });
+        if (boardType === "free") {
+          var post = await Free.findOne({ id: postId });
+        } else if (boardType === "photo") {
+          var post = await Photo.findOne({ id: postId });
         }
         post.comments = post.comments.filter(
-          (comment) => comment.id !== comment_id
+          (comment) => comment.id !== commentId
         );
         var postUpdated = await post.save();
         return res.status(200).send(postUpdated);
       } catch (error) {
         return res.status(500).send(error.message);
       }
-    } else if (!comment_id) {
+    } else if (!commentId) {
       return res.end();
     } else {
       res.status(422).send("data_incomplete");

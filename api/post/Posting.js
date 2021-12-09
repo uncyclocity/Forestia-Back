@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const handler = async (req, res) => {
   if (req.method === "POST") {
     const {
-      board_type,
+      boardType,
       id,
       author,
       authorId,
@@ -27,7 +27,7 @@ const handler = async (req, res) => {
       imagesUrl
     ) {
       try {
-        var post_obj = {
+        var postObj = {
           _id: new mongoose.Types.ObjectId(),
           id,
           author,
@@ -40,10 +40,10 @@ const handler = async (req, res) => {
           comments,
           imagesUrl,
         };
-        if (board_type === "free") {
-          var post = new Free(post_obj);
-        } else if (board_type === "photo") {
-          var post = new Photo(post_obj);
+        if (boardType === "free") {
+          var post = new Free(postObj);
+        } else if (boardType === "photo") {
+          var post = new Photo(postObj);
         }
         var postcreated = await post.save();
         return res.status(200).send(postcreated);

@@ -2,42 +2,42 @@ const connectDB = require("../../middleware/mongodb");
 const Free = require("../../models/Free");
 const Photo = require("../../models/Photo");
 
-const addition = (post, userId, ud_type) => {
-  post[ud_type].amount = parseInt(post[ud_type].amount) + 1;
-  post[ud_type].clicker.push(userId);
+const addition = (post, userId, udType) => {
+  post[udType].amount = parseInt(post[udType].amount) + 1;
+  post[udType].clicker.push(userId);
 };
 
-const substract = (post, userId, ud_type) => {
-  post[ud_type].amount = parseInt(post[ud_type].amount) - 1;
-  post[ud_type].clicker = post[ud_type].clicker.filter(
+const substract = (post, userId, udType) => {
+  post[udType].amount = parseInt(post[udType].amount) - 1;
+  post[udType].clicker = post[udType].clicker.filter(
     (clickUser) => clickUser !== userId
   );
 };
 
 const handler = async (req, res) => {
   if (req.method === "PUT") {
-    const { board_type, post_id, ud_type, operation, userId, rev_ud_type } =
+    const { boardType, postId, udType, operation, userId, revUdType } =
       req.body;
     if (
-      board_type &&
-      parseInt(post_id) >= 0 &&
-      ud_type &&
+      boardType &&
+      parseInt(postId) >= 0 &&
+      udType &&
       operation &&
       userId
     ) {
       try {
-        if (board_type === "free") {
-          var post = await Free.findOne({ id: post_id });
-        } else if (board_type === "photo") {
-          var post = await Photo.findOne({ id: post_id });
+        if (boardType === "free") {
+          var post = await Free.findOne({ id: postId });
+        } else if (boardType === "photo") {
+          var post = await Photo.findOne({ id: postId });
         }
         if (operation === "add") {
-          addition(post, userId, ud_type);
+          addition(post, userId, udType);
         } else if (operation === "sub") {
-          substract(post, userId, ud_type);
+          substract(post, userId, udType);
         } else if (operation === "addsub") {
-          substract(post, userId, rev_ud_type);
-          addition(post, userId, ud_type);
+          substract(post, userId, revUdType);
+          addition(post, userId, udType);
         }
         var postupdated = await post.save();
         return res.status(200).send(postupdated);

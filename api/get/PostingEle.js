@@ -4,23 +4,23 @@ const Photo = require("../../models/Photo");
 
 const handler = async (req, res) => {
   if (req.method === "GET") {
-    const { board_type, id } = req.query;
-    if ((board_type, id)) {
+    const { boardtype: boardType, postid: postId } = req.query;
+    if ((boardType, postId)) {
       try {
-        switch (board_type) {
+        switch (boardType) {
           case "free":
-            var posting = await Free.findOne({ id });
+            var posting = await Free.findOne({ id: postId });
             break;
           case "photo":
-            var posting = await Photo.findOne({ id });
+            var posting = await Photo.findOne({ id: postId });
             break;
           default:
             console.error(
-              "getPostingEle에 넘어오는 쿼리값 board_type 값을 확인하세요"
+              "getPostingEle에 넘어오는 쿼리값 boardtype 값을 확인하세요"
             );
             break;
         }
-        console.log(posting);
+        console.log(postId);
         return res.status(200).send(posting);
       } catch (error) {
         return res.status(500).send(error.message);

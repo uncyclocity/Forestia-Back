@@ -4,10 +4,10 @@ const Photo = require("../../models/Photo");
 
 const handler = async (req, res) => {
   if (req.method === "GET") {
-    const { board_type } = req.query;
-    if (board_type) {
+    const { boardtype: boardType } = req.query;
+    if (boardType) {
       try {
-        switch (board_type) {
+        switch (boardType) {
           case "free":
             var posting = await Free.findOne().sort({ _id: -1 });
             break;

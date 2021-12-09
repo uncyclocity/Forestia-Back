@@ -4,12 +4,12 @@ const Photo = require("../../models/Photo");
 
 const handler = async (req, res) => {
   if (req.method === "PUT") {
-    const { board_type, id, title, content } = req.body;
-    if (board_type && id >= 0 && title && content) {
+    const { boardType, id, title, content } = req.body;
+    if (boardType && id >= 0 && title && content) {
       try {
-        if (board_type === "free") {
+        if (boardType === "free") {
           var post = await Free.findOne({ id });
-        } else if (board_type === "photo") {
+        } else if (boardType === "photo") {
           var post = await Photo.findOne({ id });
         }
         post.title = title;

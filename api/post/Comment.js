@@ -4,25 +4,25 @@ const Photo = require("../../models/Photo");
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    const { board_type, post_id, comment_id, author, authorId, date, content } =
+    const { boardType, postId, commentId, author, authorId, date, content } =
       req.body;
     if (
-      (board_type,
-      post_id,
-      comment_id >= 0 && author && authorId && date && content)
+      (boardType,
+      postId,
+      commentId >= 0 && author && authorId && date && content)
     ) {
       try {
         var newComment = {
-          id: comment_id,
+          id: commentId,
           author,
           authorId,
           date,
           content,
         };
-        if (board_type === "free") {
-          var post = await Free.findOne({ id: post_id });
-        } else if (board_type === "photo") {
-          var post = await Photo.findOne({ id: post_id });
+        if (boardType === "free") {
+          var post = await Free.findOne({ id: postId });
+        } else if (boardType === "photo") {
+          var post = await Photo.findOne({ id: postId });
         }
         post.comments.push(newComment);
         var postUpdated = await post.save();

@@ -4,16 +4,16 @@ const Photo = require("../../models/Photo");
 
 const handler = async (req, res) => {
   if (req.method === "PUT") {
-    const { board_type, post_id, comment_id, content } = req.body;
-    if (comment_id >= 0 && post_id >= 0 && board_type && content) {
+    const { boardType, postId, commentId, content } = req.body;
+    if (commentId >= 0 && postId >= 0 && boardType && content) {
       try {
-        if (board_type === "free") {
-          var post = await Free.findOne({ id: post_id });
-        } else if (board_type === "photo") {
-          var post = await Photo.findOne({ id: post_id });
+        if (boardType === "free") {
+          var post = await Free.findOne({ id: postId });
+        } else if (boardType === "photo") {
+          var post = await Photo.findOne({ id: postId });
         }
         var commentIdx = post.comments.findIndex(
-          (comment) => comment.id === comment_id
+          (comment) => comment.id === commentId
         );
         post.comments[commentIdx].content = content;
         var commUpdated = await post.save();

@@ -4,12 +4,12 @@ const Photo = require("../../models/Photo");
 
 const handler = async (req, res) => {
   if (req.method === "DELETE") {
-    const { board_type, id } = req.body;
-    if (board_type && id >= 0) {
+    const { boardType, id } = req.body;
+    if (boardType && id >= 0) {
       try {
-        if (board_type === "free") {
+        if (boardType === "free") {
           await Free.deleteOne({ id });
-        } else if (board_type === "photo") {
+        } else if (boardType === "photo") {
           await Photo.deleteOne({ id });
         }
         return res.status(200).send();
