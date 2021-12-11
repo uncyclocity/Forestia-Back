@@ -47,6 +47,9 @@ const getUserByNickName = require("./api/get/UserByNickName");
 const postUser = require("./api/post/User");
 const postUserToken = require("./api/post/UserToken");
 
+// import delete_users
+const deleteUser = require("./api/delete/User");
+
 /* ----------------------------------------------------------------------- */
 
 // get_posting
@@ -85,6 +88,9 @@ server.use("/get/user-by-nickname", getUserByNickName);
 // post_users
 server.use("/post/user", postUser);
 server.use("/post/user-token", postUserToken);
+
+// delete_users
+server.use("/delete/user", deleteUser);
 
 /* ----------------------------------------------------------------------- */
 
