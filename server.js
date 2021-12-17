@@ -42,6 +42,8 @@ const putComment = require("./api/put/Comment");
 // import get_users
 const getUserById = require("./api/get/UserById");
 const getUserByNickName = require("./api/get/UserByNickName");
+const getUserByToken = require("./api/get/UserByToken");
+const getUserToken = require("./api/get/UserToken");
 
 // import post_users
 const postUser = require("./api/post/User");
@@ -84,6 +86,8 @@ server.use("/put/comment", putComment);
 // get_users
 server.use("/get/user-by-id", getUserById);
 server.use("/get/user-by-nickname", getUserByNickName);
+server.use("/get/user-by-token", getUserByToken);
+server.use("/get/user-token", getUserToken);
 
 // post_users
 server.use("/post/user", postUser);
