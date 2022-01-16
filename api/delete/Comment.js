@@ -8,14 +8,14 @@ const handler = async (req, res) => {
     if (parseInt(commentId) >= 0 && parseInt(postId) >= 0 && boardType) {
       try {
         if (boardType === "free") {
-          var post = await Free.findOne({ id: postId });
+          let post = await Free.findOne({ id: postId });
         } else if (boardType === "photo") {
-          var post = await Photo.findOne({ id: postId });
+          let post = await Photo.findOne({ id: postId });
         }
         post.comments = post.comments.filter(
           (comment) => comment.id !== commentId
         );
-        var postUpdated = await post.save();
+        let postUpdated = await post.save();
         return res.status(200).send(postUpdated);
       } catch (error) {
         return res.status(500).send(error.message);

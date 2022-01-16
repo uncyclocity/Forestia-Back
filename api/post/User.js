@@ -7,15 +7,15 @@ const handler = async (req, res) => {
     const { id, email, nickName, token } = req.body;
     if (id && email && nickName) {
       try {
-        var user_obj = {
+        let user_obj = {
           _id: new mongoose.Types.ObjectId(),
           id,
           email,
           nickname: nickName,
           token,
         };
-        var user = new Member(user_obj);
-        var usercreated = await user.save();
+        let user = new Member(user_obj);
+        let usercreated = await user.save();
         return res.status(200).send(usercreated);
       } catch (error) {
         return res.status(500).send(error.message);

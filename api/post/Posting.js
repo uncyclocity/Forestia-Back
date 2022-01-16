@@ -27,7 +27,7 @@ const handler = async (req, res) => {
       imagesUrl
     ) {
       try {
-        var postObj = {
+        let postObj = {
           _id: new mongoose.Types.ObjectId(),
           id,
           author,
@@ -41,11 +41,11 @@ const handler = async (req, res) => {
           imagesUrl,
         };
         if (boardType === "free") {
-          var post = new Free(postObj);
+          let post = new Free(postObj);
         } else if (boardType === "photo") {
-          var post = new Photo(postObj);
+          let post = new Photo(postObj);
         }
-        var postcreated = await post.save();
+        let postcreated = await post.save();
         return res.status(200).send(postcreated);
       } catch (error) {
         return res.status(500).send(error.message);

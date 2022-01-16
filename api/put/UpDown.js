@@ -18,18 +18,12 @@ const handler = async (req, res) => {
   if (req.method === "PUT") {
     const { boardType, postId, udType, operation, userId, revUdType } =
       req.body;
-    if (
-      boardType &&
-      parseInt(postId) >= 0 &&
-      udType &&
-      operation &&
-      userId
-    ) {
+    if (boardType && parseInt(postId) >= 0 && udType && operation && userId) {
       try {
         if (boardType === "free") {
-          var post = await Free.findOne({ id: postId });
+          let post = await Free.findOne({ id: postId });
         } else if (boardType === "photo") {
-          var post = await Photo.findOne({ id: postId });
+          let post = await Photo.findOne({ id: postId });
         }
         if (operation === "add") {
           addition(post, userId, udType);
@@ -39,7 +33,7 @@ const handler = async (req, res) => {
           substract(post, userId, revUdType);
           addition(post, userId, udType);
         }
-        var postupdated = await post.save();
+        let postupdated = await post.save();
         return res.status(200).send(postupdated);
       } catch (error) {
         return res.status(500).send(error.message);

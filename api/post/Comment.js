@@ -12,7 +12,7 @@ const handler = async (req, res) => {
       commentId >= 0 && author && authorId && date && content)
     ) {
       try {
-        var newComment = {
+        let newComment = {
           id: commentId,
           author,
           authorId,
@@ -20,12 +20,12 @@ const handler = async (req, res) => {
           content,
         };
         if (boardType === "free") {
-          var post = await Free.findOne({ id: postId });
+          let post = await Free.findOne({ id: postId });
         } else if (boardType === "photo") {
-          var post = await Photo.findOne({ id: postId });
+          let post = await Photo.findOne({ id: postId });
         }
         post.comments.push(newComment);
-        var postUpdated = await post.save();
+        let postUpdated = await post.save();
         return res.status(200).send(postUpdated);
       } catch (error) {
         return res.status(500).send(error.message);

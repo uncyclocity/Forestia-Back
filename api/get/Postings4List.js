@@ -9,13 +9,13 @@ const handler = async (req, res) => {
       try {
         switch (boardType) {
           case "free":
-            var postings = await Free.find()
+            let postings = await Free.find()
               .sort({ _id: -1 })
               .skip((page - 1) * 15)
               .limit(15);
             break;
           case "photo":
-            var postings = await Photo.find()
+            let postings = await Photo.find()
               .sort({ _id: -1 })
               .skip((page - 1) * 15)
               .limit(15);

@@ -9,10 +9,10 @@ const handler = async (req, res) => {
       try {
         switch (boardType) {
           case "free":
-            var posting = await Free.findOne().sort({ _id: -1 });
+            let posting = await Free.findOne().sort({ _id: -1 });
             break;
           case "photo":
-            var posting = await Photo.findOne().sort({ _id: -1 });
+            let posting = await Photo.findOne().sort({ _id: -1 });
             break;
         }
         return res.status(200).send(posting.id);

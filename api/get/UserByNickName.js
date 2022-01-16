@@ -6,7 +6,7 @@ const handler = async (req, res) => {
     const { nickName } = req.query;
     if (nickName) {
       try {
-        var user = await Member.findOne({ nickname: nickName });
+        let user = await Member.findOne({ nickname: nickName });
         return res.status(200).send(user);
       } catch (error) {
         return res.status(500).send(error.message);

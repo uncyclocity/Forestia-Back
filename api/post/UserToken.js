@@ -6,9 +6,9 @@ const handler = async (req, res) => {
     const { id, token } = req.body;
     if (id && token) {
       try {
-        var user = await Member.findOne({ id });
+        let user = await Member.findOne({ id });
         user.token = token;
-        var usercreated = await user.save();
+        let usercreated = await user.save();
         return res.status(200).send(usercreated);
       } catch (error) {
         return res.status(500).send(error.message);

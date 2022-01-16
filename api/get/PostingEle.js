@@ -9,10 +9,10 @@ const handler = async (req, res) => {
       try {
         switch (boardType) {
           case "free":
-            var posting = await Free.findOne({ id: postId });
+            let posting = await Free.findOne({ id: postId });
             break;
           case "photo":
-            var posting = await Photo.findOne({ id: postId });
+            let posting = await Photo.findOne({ id: postId });
             break;
           default:
             console.error(

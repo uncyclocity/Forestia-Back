@@ -8,13 +8,13 @@ const handler = async (req, res) => {
     if (boardType && id >= 0 && title && content) {
       try {
         if (boardType === "free") {
-          var post = await Free.findOne({ id });
+          let post = await Free.findOne({ id });
         } else if (boardType === "photo") {
-          var post = await Photo.findOne({ id });
+          let post = await Photo.findOne({ id });
         }
         post.title = title;
         post.content = content;
-        var postupdated = await post.save();
+        let postupdated = await post.save();
         return res.status(200).send(postupdated);
       } catch (error) {
         return res.status(500).send(error.message);
