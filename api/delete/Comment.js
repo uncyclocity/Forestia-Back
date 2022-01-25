@@ -1,27 +1,52 @@
 const connectDB = require("../../middleware/mongodb");
 const Free = require("../../models/Free");
 const Photo = require("../../models/Photo");
+const jwt = require("jsonwebtoken");
+const Member = require("../../models/Member");
 
 const handler = async (req, res) => {
+  let commUpdated;
+  let posting;
+
   if (req.method === "DELETE") {
-    const { boardType, postId, commentId } = req.body;
-    if (parseInt(commentId) >= 0 && parseInt(postId) >= 0 && boardType) {
+    const { boardType, postId, commentId, authorId, token } = req.body;
+    if (
+      parseInt(commentId) >= 0 &&
+      parseInt(postId) >= 0 &&
+      boardType &&
+      authorId &&
+      token
+    ) {
       try {
-        if (boardType === "free") {
-          let post = await Free.findOne({ id: postId });
-        } else if (boardType === "photo") {
-          let post = await Photo.findOne({ id: postId });
-        }
-        post.comments = post.comments.filter(
-          (comment) => comment.id !== commentId
+        jwt.verify(
+          token,
+          process.env.JWT_SECRET,
+          async (err, { id: userId }) => {
+            if (err) {
+              res.status(422).send("jwt_error");
+              return;
+            } else {
+              let author = await Member.findOne({ id: userId });
+              if (author && userId === authorId) {
+                if (boardType === "free") {
+                  posting = await Free.findOne({ id: postId });
+                } else if (boardType === "photo") {
+                  posting = await Photo.findOne({ id: postId });
+                }
+                posting.comments = posting.comments.filter(
+                  (comment) => comment.id !== commentId
+                );
+                commUpdated = await posting.save();
+                return res.status(200).send(commUpdated);
+              } else {
+                res.status(422).send("user_is_not_found");
+              }
+            }
+          }
         );
-        let postUpdated = await post.save();
-        return res.status(200).send(postUpdated);
       } catch (error) {
         return res.status(500).send(error.message);
       }
-    } else if (!commentId) {
-      return res.end();
     } else {
       res.status(422).send("data_incomplete");
     }

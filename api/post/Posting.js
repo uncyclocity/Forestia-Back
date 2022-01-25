@@ -2,24 +2,19 @@ const connectDB = require("../../middleware/mongodb");
 const Free = require("../../models/Free");
 const Photo = require("../../models/Photo");
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
+const Member = require("../../models/Member");
 
 const handler = async (req, res) => {
+  let postCreated;
+  let posting;
+
   if (req.method === "POST") {
-    const {
-      boardType,
-      id,
-      author,
-      authorId,
-      date,
-      title,
-      content,
-      comments,
-      imagesUrl,
-    } = req.body;
+    const { boardType, id, token, date, title, content, comments, imagesUrl } =
+      req.body;
     if (
-      id >= 0 &&
-      author &&
-      authorId &&
+      parseInt(id) >= 0 &&
+      token &&
       date &&
       title &&
       content &&
@@ -27,26 +22,41 @@ const handler = async (req, res) => {
       imagesUrl
     ) {
       try {
-        let postObj = {
-          _id: new mongoose.Types.ObjectId(),
-          id,
-          author,
-          authorId,
-          date,
-          title,
-          content,
-          up: { amount: 0, clicker: [] },
-          down: { amount: 0, clicker: [] },
-          comments,
-          imagesUrl,
-        };
-        if (boardType === "free") {
-          let post = new Free(postObj);
-        } else if (boardType === "photo") {
-          let post = new Photo(postObj);
-        }
-        let postcreated = await post.save();
-        return res.status(200).send(postcreated);
+        jwt.verify(
+          token,
+          process.env.JWT_SECRET,
+          async (err, { id: userId }) => {
+            if (err) {
+              res.status(422).send("jwt_error");
+              return;
+            }
+            let author = await Member.findOne({ id: userId });
+            if (author) {
+              let postObj = {
+                _id: new mongoose.Types.ObjectId(),
+                id,
+                author: author.nickname,
+                authorId: author.id,
+                date,
+                title,
+                content,
+                up: { amount: 0, clicker: [] },
+                down: { amount: 0, clicker: [] },
+                comments,
+                imagesUrl,
+              };
+              if (boardType === "free") {
+                posting = new Free(postObj);
+              } else if (boardType === "photo") {
+                posting = new Photo(postObj);
+              }
+              postCreated = await posting.save();
+              return res.status(200).send(postCreated);
+            } else {
+              res.status(422).send("user_is_not_found");
+            }
+          }
+        );
       } catch (error) {
         return res.status(500).send(error.message);
       }

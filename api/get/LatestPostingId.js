@@ -3,16 +3,18 @@ const Free = require("../../models/Free");
 const Photo = require("../../models/Photo");
 
 const handler = async (req, res) => {
+  let posting;
+
   if (req.method === "GET") {
     const { boardtype: boardType } = req.query;
     if (boardType) {
       try {
         switch (boardType) {
           case "free":
-            let posting = await Free.findOne().sort({ _id: -1 });
+            posting = await Free.findOne().sort({ _id: -1 });
             break;
           case "photo":
-            let posting = await Photo.findOne().sort({ _id: -1 });
+            posting = await Photo.findOne().sort({ _id: -1 });
             break;
         }
         return res.status(200).send(posting.id);

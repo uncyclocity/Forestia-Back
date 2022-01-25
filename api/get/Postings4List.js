@@ -3,19 +3,21 @@ const Free = require("../../models/Free");
 const Photo = require("../../models/Photo");
 
 const handler = async (req, res) => {
+  let postings;
+
   if (req.method === "GET") {
     const { page, boardtype: boardType } = req.query;
     if ((page, boardType)) {
       try {
         switch (boardType) {
           case "free":
-            let postings = await Free.find()
+            postings = await Free.find()
               .sort({ _id: -1 })
               .skip((page - 1) * 15)
               .limit(15);
             break;
           case "photo":
-            let postings = await Photo.find()
+            postings = await Photo.find()
               .sort({ _id: -1 })
               .skip((page - 1) * 15)
               .limit(15);
