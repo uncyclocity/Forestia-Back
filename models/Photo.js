@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const photo = new Schema({
@@ -39,10 +39,23 @@ const photo = new Schema({
         default: Date.now,
       },
       content: String,
+
+      replys: [
+        {
+          id: String,
+          author: String,
+          authorId: String,
+          date: {
+            type: String,
+            default: Date.now,
+          },
+          content: String,
+        },
+      ],
     },
   ],
 
   imagesUrl: Array,
 });
 
-module.exports = mongoose.models.Photo || mongoose.model('Photo', photo);
+module.exports = mongoose.models.Photo || mongoose.model("Photo", photo);
