@@ -39,6 +39,15 @@ const deleteComment = require("./api/delete/Comment");
 // import put_comment
 const putComment = require("./api/put/Comment");
 
+// import post_reply
+const postReply = require("./api/post/Reply");
+
+// import delete_reply
+const deleteReply = require("./api/delete/Reply");
+
+// import put_reply
+const putReply = require("./api/put/Reply");
+
 // import get_users
 const getUserById = require("./api/get/UserById");
 const getUserByNickName = require("./api/get/UserByNickName");
@@ -82,6 +91,15 @@ server.use("/delete/comment", deleteComment);
 
 // edit_comment
 server.use("/put/comment", putComment);
+
+// post_reply
+server.use("/post/reply", postReply);
+
+// delete_reply
+server.use("/delete/reply", deleteReply);
+
+// edit_reply
+server.use("/put/reply", putReply);
 
 // get_users
 server.use("/get/user-by-id", getUserById);
