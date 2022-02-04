@@ -17,6 +17,7 @@ const getPostingEle = require("./api/get/PostingEle");
 const getPostings4List = require("./api/get/Postings4List");
 const getPostingsLen = require("./api/get/PostingsLen");
 const getPostingsTop3 = require("./api/get/PostingsTop3");
+const getCommentsLen = require("./api/get/CommentsLen");
 
 // import post_posting
 const postImage = require("./api/post/Image");
@@ -69,6 +70,7 @@ server.use("/get/posting-ele", getPostingEle);
 server.use("/get/postings-4-list", getPostings4List);
 server.use("/get/postings-len", getPostingsLen);
 server.use("/get/postings-top3", getPostingsTop3);
+server.use("/get/comments-len", getCommentsLen);
 
 // post_posting
 server.use("/post/image", postImage);
