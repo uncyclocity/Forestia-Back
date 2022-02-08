@@ -120,7 +120,7 @@ server.use("/uploads", express.static("/app/public/uploads"));
 
 server.use((req, res, next) => {
   if (!req.secure) {
-    res.redirect("https://forestia-back.xyz" + req.url);
+    res.redirect("https://api.forestia.me" + req.url);
   } else {
     next();
   }
