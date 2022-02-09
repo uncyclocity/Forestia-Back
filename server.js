@@ -122,7 +122,7 @@ server.use("/delete/user", deleteUser);
 server.use("/get/refresh-token-is-valid", getRefreshTokenIsValid);
 
 // post_refresh_token
-server.use("/get/refresh_token", postRefreshToken);
+server.use("/post/refresh-token", postRefreshToken);
 
 /* ----------------------------------------------------------------------- */
 
