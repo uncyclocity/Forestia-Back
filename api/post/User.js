@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    const { id, email, nickName, token } = req.body;
+    const { id, email, nickName } = req.body;
     if (id && email && nickName) {
       try {
         let user_obj = {
@@ -12,7 +12,6 @@ const handler = async (req, res) => {
           id,
           email,
           nickname: nickName,
-          token,
         };
         let user = new Member(user_obj);
         let usercreated = await user.save();

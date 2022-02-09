@@ -56,10 +56,15 @@ const getUserToken = require("./api/get/UserToken");
 
 // import post_users
 const postUser = require("./api/post/User");
-const postUserToken = require("./api/post/UserToken");
 
 // import delete_users
 const deleteUser = require("./api/delete/User");
+
+// import get_refresh_token
+const getRefreshTokenIsValid = require("./api/get/RefreshTokenIsValid");
+
+// import post_refresh_token
+const postRefreshToken = require("./api/post/RefreshToken");
 
 /* ----------------------------------------------------------------------- */
 
@@ -112,6 +117,12 @@ server.use("/post/user", postUser);
 
 // delete_users
 server.use("/delete/user", deleteUser);
+
+// get_refresh_token
+server.use("/get/refresh-token-is-valid", getRefreshTokenIsValid);
+
+// post_refresh_token
+server.use("/get/refresh_token", postRefreshToken);
 
 /* ----------------------------------------------------------------------- */
 

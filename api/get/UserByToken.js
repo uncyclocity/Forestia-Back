@@ -3,15 +3,16 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 
 router.get("/", (req, res) => {
-  const { token } = req.query;
+  console.log(req);
+  res.json({ test: "hello world" });
 
-  jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    res.json(decoded);
-  });
+  // jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+  //   if (err) {
+  //     console.error(err);
+  //     return;
+  //   }
+  //   res.json(decoded);
+  // });
 });
 
 module.exports = router;

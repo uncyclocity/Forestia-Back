@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const member = new Schema({
@@ -10,7 +10,7 @@ const member = new Schema({
 
   nickname: String,
 
-  token: String,
+  refreshToken: String,
 });
 
-module.exports = mongoose.models.Member || mongoose.model('Member', member);
+module.exports = mongoose.models.Member || mongoose.model("Member", member);
