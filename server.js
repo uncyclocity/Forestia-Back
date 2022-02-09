@@ -109,7 +109,6 @@ server.use("/get/user-token", getUserToken);
 
 // post_users
 server.use("/post/user", postUser);
-server.use("/post/user-token", postUserToken);
 
 // delete_users
 server.use("/delete/user", deleteUser);
