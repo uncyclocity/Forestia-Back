@@ -19,13 +19,14 @@ const substract = (post, userId, udType) => {
 const handler = async (req, res) => {
   let updownUpdated;
   let updown;
+  const accessToken = req.headers.authorization.substr(7);
 
   if (req.method === "PUT") {
-    const { boardType, postId, udType, token, operation, revUdType } = req.body;
-    if (boardType && parseInt(postId) >= 0 && udType && token && operation) {
+    const { boardType, postId, udType, operation, revUdType } = req.body;
+    if (boardType && parseInt(postId) >= 0 && udType && operation) {
       try {
         jwt.verify(
-          token,
+          accessToken,
           process.env.JWT_SECRET,
           async (err, { id: userId }) => {
             if (err) {

@@ -7,19 +7,19 @@ const Member = require("../../models/Member");
 const handler = async (req, res) => {
   let commUpdated;
   let posting;
+  const accessToken = req.headers.authorization.substr(7);
 
   if (req.method === "DELETE") {
-    const { boardType, postId, commentId, authorId, token } = req.body;
+    const { boardType, postId, commentId, authorId } = req.body;
     if (
       parseInt(commentId) >= 0 &&
       parseInt(postId) >= 0 &&
       boardType &&
-      authorId &&
-      token
+      authorId
     ) {
       try {
         jwt.verify(
-          token,
+          accessToken,
           process.env.JWT_SECRET,
           async (err, { id: userId }) => {
             if (err) {

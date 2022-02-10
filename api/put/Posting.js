@@ -7,13 +7,14 @@ const Member = require("../../models/Member");
 const handler = async (req, res) => {
   let postUpdated;
   let posting;
+  const accessToken = req.headers.authorization.substr(7);
 
   if (req.method === "PUT") {
-    const { boardType, id, title, content, authorId, token } = req.body;
-    if (boardType && id >= 0 && title && content && authorId && token) {
+    const { boardType, id, title, content, authorId } = req.body;
+    if (boardType && id >= 0 && title && content && authorId) {
       try {
         jwt.verify(
-          token,
+          accessToken,
           process.env.JWT_SECRET,
           async (err, { id: userId }) => {
             if (err) {

@@ -5,12 +5,14 @@ const jwt = require("jsonwebtoken");
 const Member = require("../../models/Member");
 
 const handler = async (req, res) => {
+  const accessToken = req.headers.authorization.substr(7);
+
   if (req.method === "DELETE") {
-    const { boardType, id, authorId, token } = req.body;
-    if (boardType && id >= 0 && authorId && token) {
+    const { boardType, id, authorId } = req.body;
+    if (boardType && id >= 0 && authorId) {
       try {
         jwt.verify(
-          token,
+          accessToken,
           process.env.JWT_SECRET,
           async (err, { id: userId }) => {
             if (err) {
