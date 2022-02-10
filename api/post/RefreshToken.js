@@ -13,17 +13,13 @@ const handler = async (req, res) => {
           process.env.JWT_SECRET,
           jwtOptions.refreshToken
         );
-        res.writeHead(200, {
-          "Set-Cookie": [
-            `refreshToken=${refreshToken}`,
-            "Secure=Secure; Secure",
-            "HttpOnly=HttpOnly; HttpOnly",
-          ],
-        });
         const user = await Member.findOne({ id });
-        uset.refreshToken = refreshToken;
-        const userUpdated = await user.save();
-        return res.status(200).send(userUpdated);
+        user.refreshToken = refreshToken;
+        await user.save();
+        res.writeHead(200, {
+          "Set-Cookie": `refreshToken=${refreshToken}; domain=.forestia.me; path=/`,
+        });
+        res.end();
       } catch (error) {
         return res.status(500).send(error.message);
       }

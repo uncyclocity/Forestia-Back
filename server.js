@@ -7,7 +7,12 @@ const ports = [80, 443];
 
 server.use(express.json());
 
-server.use(cors());
+server.use(
+  cors({
+    origin: "https://forestia.me",
+    credentials: true,
+  })
+);
 
 const httpsServer = https.createServer(options, server);
 
