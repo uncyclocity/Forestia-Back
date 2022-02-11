@@ -12,7 +12,7 @@ const handler = async (req, res) => {
         const refreshToken = cookies.refreshToken;
         jwt.verify(refreshToken, process.env.JWT_SECRET, (err, data) => {
           if (err) {
-            return res.status(200);
+            return res.status(422).send("user_data_is_not_found_in_cookie");
           }
         });
         const user = await Member.findOne({ refreshToken });
@@ -21,7 +21,7 @@ const handler = async (req, res) => {
         return res.status(500).send(error.message);
       }
     } else {
-      res.status(422).send("cookie_data_is_not_found");
+      res.status(422).send("cookie_is_not_found");
     }
   } else {
     res.status(422).send("req_method_not_supported");
