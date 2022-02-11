@@ -10,7 +10,11 @@ const handler = async (req, res) => {
       cookies = cookie.parse(req.headers.cookie);
       try {
         const refreshToken = cookies.refreshToken;
-        jwt.verify(refreshToken, process.env.JWT_SECRET);
+        jwt.verify(refreshToken, process.env.JWT_SECRET, (err, data) => {
+          if (err) {
+            return res.status(200);
+          }
+        });
         const user = await Member.findOne({ refreshToken });
         return res.status(200).send(user);
       } catch (error) {
