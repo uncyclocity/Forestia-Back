@@ -24,20 +24,6 @@ const handler = async (req, res) => {
       comments &&
       imagesUrl
     ) {
-      const postObj = {
-        _id: new mongoose.Types.ObjectId(),
-        id,
-        author: author.nickname,
-        authorId: author.id,
-        date,
-        title,
-        content,
-        up: { amount: 0, clicker: [] },
-        down: { amount: 0, clicker: [] },
-        comments,
-        imagesUrl,
-      };
-
       try {
         callBack = async (err, { id: userId }) => {
           if (err) {
@@ -45,6 +31,19 @@ const handler = async (req, res) => {
           }
           const author = await Member.findOne({ id: userId });
           if (author) {
+            const postObj = {
+              _id: new mongoose.Types.ObjectId(),
+              id,
+              author: author.nickname,
+              authorId: author.id,
+              date,
+              title,
+              content,
+              up: { amount: 0, clicker: [] },
+              down: { amount: 0, clicker: [] },
+              comments,
+              imagesUrl,
+            };
             if (boardType === "free") {
               posting = new Free(postObj);
             } else if (boardType === "photo") {

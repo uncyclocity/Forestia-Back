@@ -46,7 +46,7 @@ const handler = async (req, res) => {
               substract(posting, userId, revUdType);
               addition(posting, userId, udType);
             }
-            postingModified = await updown.save();
+            postingModified = await posting.save();
             return res.status(200).send(postingModified);
           } else {
             return error422.userIsNotFound(res);

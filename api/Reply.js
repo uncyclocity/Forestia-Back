@@ -22,14 +22,6 @@ const handler = async (req, res) => {
       date &&
       content
     ) {
-      const newReply = {
-        id: replyId,
-        author: author.nickname,
-        authorId: author.id,
-        date,
-        content,
-      };
-
       try {
         callBack = async (err, { id: userId }) => {
           if (err) {
@@ -45,6 +37,13 @@ const handler = async (req, res) => {
             let commentIdx = posting.comments.findIndex(
               (comment) => comment.id === commentId
             );
+            const newReply = {
+              id: replyId,
+              author: author.nickname,
+              authorId: author.id,
+              date,
+              content,
+            };
             posting.comments[commentIdx].replys.push(newReply);
             postingModified = await posting.save();
             return res.status(200).send(postingModified);
