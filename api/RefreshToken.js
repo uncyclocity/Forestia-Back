@@ -1,10 +1,11 @@
-const connectDB = require("../../middleware/mongodb");
+const connectDB = require("../middleware/mongodb");
 const jwt = require("jsonwebtoken");
-const jwtOptions = require("../../config/jwt_options");
-const Member = require("../../models/Member");
+const jwtOptions = require("../config/jwt_options");
+const Member = require("../models/Member");
+const { error422, error500 } = require("./errorFunc");
 
 const handler = async (req, res) => {
-  if (req.method === "POST") {
+  const post = () => {
     const { id } = req.body;
     if (id) {
       try {
@@ -19,15 +20,19 @@ const handler = async (req, res) => {
         res.writeHead(200, {
           "Set-Cookie": `refreshToken=${refreshToken}; domain=.forestia.me; path=/`,
         });
-        res.end();
-      } catch (error) {
-        return res.status(500).send(error.message);
+        return res.end();
+      } catch (err) {
+        return error500(res, err.message);
       }
     } else {
-      res.status(422).send("data_incomplete");
+      return error422.dataIncomplete(res);
     }
+  };
+
+  if (req.method === "POST") {
+    post();
   } else {
-    res.status(422).send("req_method_not_supported");
+    return error422.reqMethodNotSupported(res);
   }
 };
 
