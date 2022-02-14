@@ -1,4 +1,4 @@
-export const error422 = {
+const error422 = {
   reqMethodNotSupported: (res) => {
     return res.status(422).send("req_method_not_supported");
   },
@@ -13,6 +13,8 @@ export const error422 = {
   },
 };
 
-export const error500 = (res, msg) => {
+const error500 = (res, msg) => {
   return res.status(500).send(msg);
 };
+
+module.exports = { error422, error500 };
