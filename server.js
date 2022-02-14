@@ -9,7 +9,7 @@ server.use(express.json());
 
 server.use(
   cors({
-    origin: process.env.FRONT_URL,
+    origin: "https://forestia.me",
     credentials: true,
   })
 );
