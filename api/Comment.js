@@ -22,7 +22,7 @@ const handler = async (req, res) => {
       content
     ) {
       try {
-        callBack = (err, { id: userId }) => {
+        callBack = async (err, { id: userId }) => {
           if (err) {
             return error422.jwtError(res);
           }

@@ -10,7 +10,7 @@ const handler = async (req, res) => {
   const accessToken =
     req.headers.authorization && req.headers.authorization.substr(7);
 
-  const post = () => {
+  const post = async () => {
     const { id, email, nickName } = req.body;
     if (id && email && nickName) {
       let userObj = {

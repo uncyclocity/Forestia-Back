@@ -5,7 +5,7 @@ const Member = require("../models/Member");
 const { error422, error500 } = require("./errorFunc");
 
 const handler = async (req, res) => {
-  const post = () => {
+  const post = async () => {
     const { id } = req.body;
     if (id) {
       try {

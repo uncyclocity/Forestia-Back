@@ -23,7 +23,7 @@ const handler = async (req, res) => {
   let postingModified;
   const accessToken = req.headers.authorization.substr(7);
 
-  const callBack = () => {
+  const put = () => {
     const { boardType, postId, udType, operation, revUdType } = req.body;
     if (boardType && parseInt(postId) >= 0 && udType && operation) {
       try {
