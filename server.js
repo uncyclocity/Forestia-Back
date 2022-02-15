@@ -2,6 +2,7 @@ const express = require("express");
 const server = express();
 const https = require("https");
 const options = require("./config/pem_config").options;
+const domain = require("./config/domain");
 const cors = require("cors");
 const ports = [80, 443];
 
@@ -9,7 +10,7 @@ server.use(express.json());
 
 server.use(
   cors({
-    origin: process.env.FRONT_URL,
+    origin: domain.front,
     credentials: true,
   })
 );
@@ -69,7 +70,7 @@ server.use("/uploads", express.static("/app/public/uploads"));
 
 server.use((req, res, next) => {
   if (!req.secure) {
-    res.redirect(process.env.BACK_URL + req.url);
+    res.redirect(domain.back + req.url);
   } else {
     next();
   }
