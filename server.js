@@ -36,12 +36,14 @@ server.use("/posting/postings-top3", getPostingsTop3);
 const getUserById = require("./api/get/user/UserById");
 const getUserByNickName = require("./api/get/user/UserByNickName");
 const getUserByToken = require("./api/get/user/UserByToken");
-const getUserToken = require("./api/get/user/UserToken");
 
 server.use("/user/user-by-id", getUserById);
 server.use("/user/user-by-nickname", getUserByNickName);
 server.use("/user/user-by-token", getUserByToken);
-server.use("/user/user-token", getUserToken);
+
+// GET - UserToken
+const getUserToken = require("./api/get/user-token/UserToken");
+server.use("/user-token", getUserToken);
 
 // GET - RefreshToken
 const getRefreshTokenIsValid = require("./api/get/refreshToken/RefreshTokenIsValid");
