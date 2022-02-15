@@ -20,41 +20,41 @@ const httpsServer = https.createServer(options, server);
 /* ------------------------------------------------------------ */
 
 // GET - Posting
-const getLatestPostingId = require("./api/get/LatestPostingId");
-const getPostingEle = require("./api/get/PostingEle");
-const getPostings4List = require("./api/get/Postings4List");
-const getPostingsLen = require("./api/get/PostingsLen");
-const getPostingsTop3 = require("./api/get/PostingsTop3");
+const getLatestPostingId = require("./api/get/posting/LatestPostingId");
+const getPostingEle = require("./api/get/posting/PostingEle");
+const getPostings4List = require("./api/get/posting/Postings4List");
+const getPostingsLen = require("./api/get/posting/PostingsLen");
+const getPostingsTop3 = require("./api/get/posting/PostingsTop3");
 
-server.use("/get/latest-posting-id", getLatestPostingId);
-server.use("/get/posting-ele", getPostingEle);
-server.use("/get/postings-4-list", getPostings4List);
-server.use("/get/postings-len", getPostingsLen);
-server.use("/get/postings-top3", getPostingsTop3);
+server.use("/posting/latest-posting-id", getLatestPostingId);
+server.use("/posting/posting-ele", getPostingEle);
+server.use("/posting/postings-4-list", getPostings4List);
+server.use("/posting/postings-len", getPostingsLen);
+server.use("/posting/postings-top3", getPostingsTop3);
 
 // GET - User
-const getUserById = require("./api/get/UserById");
-const getUserByNickName = require("./api/get/UserByNickName");
-const getUserByToken = require("./api/get/UserByToken");
-const getUserToken = require("./api/get/UserToken");
+const getUserById = require("./api/get/user/UserById");
+const getUserByNickName = require("./api/get/user/UserByNickName");
+const getUserByToken = require("./api/get/user/UserByToken");
+const getUserToken = require("./api/get/user/UserToken");
 
-server.use("/get/user-by-id", getUserById);
-server.use("/get/user-by-nickname", getUserByNickName);
-server.use("/get/user-by-token", getUserByToken);
-server.use("/get/user-token", getUserToken);
+server.use("/user/user-by-id", getUserById);
+server.use("/user/user-by-nickname", getUserByNickName);
+server.use("/user/user-by-token", getUserByToken);
+server.use("/user/user-token", getUserToken);
 
 // GET - RefreshToken
-const getRefreshTokenIsValid = require("./api/get/RefreshTokenIsValid");
-server.use("/get/refresh-token-is-valid", getRefreshTokenIsValid);
+const getRefreshTokenIsValid = require("./api/get/refreshToken/RefreshTokenIsValid");
+server.use("/refresh-token/refresh-token-is-valid", getRefreshTokenIsValid);
 
 // POST, PUT, DELETE
-const image = require("./api/Image");
+const image = require("./api/others/Image");
 const posting = require("./api/Posting");
-const comment = require("./api/Comment");
-const upDown = require("./api/UpDown");
-const reply = require("./api/Reply");
-const user = require("./api/User");
-const refreshToken = require("./api/RefreshToken");
+const comment = require("./api/others/Comment");
+const upDown = require("./api/others/UpDown");
+const reply = require("./api/others/Reply");
+const user = require("./api/others/User");
+const refreshToken = require("./api/others/RefreshToken");
 
 server.use("/image", image);
 server.use("/posting", posting);

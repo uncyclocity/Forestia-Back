@@ -1,6 +1,6 @@
-const connectDB = require("../../middleware/mongodb");
-const Free = require("../../models/Free");
-const Photo = require("../../models/Photo");
+const connectDB = require("../../../middleware/mongodb");
+const Free = require("../../../models/Free");
+const Photo = require("../../../models/Photo");
 
 const handler = async (req, res) => {
   let postings;

@@ -1,9 +1,9 @@
-const connectDB = require("../middleware/mongodb");
-const Free = require("../models/Free");
-const Photo = require("../models/Photo");
+const connectDB = require("../../middleware/mongodb");
+const Free = require("../../models/Free");
+const Photo = require("../../models/Photo");
 const jwt = require("jsonwebtoken");
-const Member = require("../models/Member");
-const { error422, error500 } = require("./errorFunc");
+const Member = require("../../models/Member");
+const { error422, error500 } = require("../errorFunc");
 
 const handler = async (req, res) => {
   let callBack;

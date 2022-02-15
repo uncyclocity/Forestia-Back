@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const jwtOptions = require("../../config/jwt_options");
+const jwtOptions = require("../../../config/jwt_options");
 
 router.get("/", (req, res) => {
   const { id, email } = req.query;

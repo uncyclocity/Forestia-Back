@@ -1,5 +1,5 @@
-const connectDB = require("../../middleware/mongodb");
-const Member = require("../../models/Member");
+const connectDB = require("../../../middleware/mongodb");
+const Member = require("../../../models/Member");
 const jwt = require("jsonwebtoken");
 
 const handler = async (req, res) => {

@@ -1,7 +1,7 @@
-const connectDB = require("../../middleware/mongodb");
+const connectDB = require("../../../middleware/mongodb");
 const cookie = require("cookie");
 const jwt = require("jsonwebtoken");
-const Member = require("../../models/Member");
+const Member = require("../../../models/Member");
 
 const handler = async (req, res) => {
   if (req.method === "GET") {

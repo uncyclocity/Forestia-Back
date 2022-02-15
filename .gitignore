@@ -105,3 +105,6 @@ dist
 
 # SSL cert and key
 /config/secure/
+
+# domain options
+/config/domain.js

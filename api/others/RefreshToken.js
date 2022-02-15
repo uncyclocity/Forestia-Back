@@ -1,8 +1,8 @@
-const connectDB = require("../middleware/mongodb");
+const connectDB = require("../../middleware/mongodb");
 const jwt = require("jsonwebtoken");
-const jwtOptions = require("../config/jwt_options");
-const Member = require("../models/Member");
-const { error422, error500 } = require("./errorFunc");
+const jwtOptions = require("../../config/jwt_options");
+const Member = require("../../models/Member");
+const { error422, error500 } = require("../errorFunc");
 
 const handler = async (req, res) => {
   const post = async () => {

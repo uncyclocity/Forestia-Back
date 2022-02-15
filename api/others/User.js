@@ -1,7 +1,7 @@
-const connectDB = require("../middleware/mongodb");
-const Member = require("../models/Member");
+const connectDB = require("../../middleware/mongodb");
+const Member = require("../../models/Member");
 const mongoose = require("mongoose");
-const { error422, error500 } = require("./errorFunc");
+const { error422, error500 } = require("../errorFunc");
 
 const handler = async (req, res) => {
   let callBack;
