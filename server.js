@@ -42,7 +42,7 @@ server.use("/user/user-by-nickname", getUserByNickName);
 server.use("/user/user-by-token", getUserByToken);
 
 // GET - UserToken
-const getUserToken = require("./api/get/user-token/UserToken");
+const getUserToken = require("./api/get/userToken/UserToken");
 server.use("/user-token", getUserToken);
 
 // GET - RefreshToken
