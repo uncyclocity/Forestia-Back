@@ -49,7 +49,7 @@ server.use("/refresh-token/refresh-token-is-valid", getRefreshTokenIsValid);
 
 // POST, PUT, DELETE
 const image = require("./api/others/Image");
-const posting = require("./api/Posting");
+const posting = require("./api/others/Posting");
 const comment = require("./api/others/Comment");
 const upDown = require("./api/others/UpDown");
 const reply = require("./api/others/Reply");
