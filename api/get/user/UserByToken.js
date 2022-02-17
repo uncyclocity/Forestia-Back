@@ -12,7 +12,11 @@ const handler = async (req, res) => {
           return;
         }
         const user = await Member.findOne({ id: decoded.id });
-        res.json({ ...decoded, nickname: user.nickname });
+        res.json({
+          ...decoded,
+          nickname: user.nickname,
+          imageUrl: user.imageUrl,
+        });
       });
     } catch (error) {
       return res.status(500).send(error.message);
