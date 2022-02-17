@@ -11,6 +11,8 @@ const member = new Schema({
   nickname: String,
 
   refreshToken: String,
+
+  imageUrl: String,
 });
 
 module.exports = mongoose.models.Member || mongoose.model("Member", member);

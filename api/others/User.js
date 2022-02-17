@@ -13,13 +13,14 @@ const handler = async (req, res) => {
     req.headers.authorization && req.headers.authorization.substr(7);
 
   const post = async () => {
-    const { id, email, nickName } = req.body;
+    const { id, email, nickName, imageUrl } = req.body;
     if (id && email && nickName) {
       let userObj = {
         _id: new mongoose.Types.ObjectId(),
         id,
         email,
         nickname: nickName,
+        imageUrl,
       };
 
       try {
